@@ -16,14 +16,22 @@ using (ApplicationContext db = new ApplicationContext()) {
 
     //var user1 = new UserDb { Login = "Tom", Password = "1" };
     //var user2 = new UserDb { Login = "Alice", Password = "1" };
-    //var user3 = new UserDb { Login = "Rob", Password = "1" };
+    //var user3 = new UserDb { Login = "Rayan", Password = "gosl" };
 
-    //// добавляем их в бд
+    // добавляем их в бд
     //db.Users.AddRange(user1, user2, user3);
 
     //Console.WriteLine("ss2");
     //db.SaveChanges();
 }
+var people = new List<Person>
+ {
+
+
+    new Person("tom@gmail.com", "1"),
+    new Person("bob@gmail.com", "55555"),
+    new Person("sam@gmail.com", "22222")
+};
 // получение данных
 using (ApplicationContext db = new ApplicationContext()) {
     // получаем объекты из бд и выводим на консоль
@@ -31,17 +39,13 @@ using (ApplicationContext db = new ApplicationContext()) {
     Console.WriteLine("Users list:");
     foreach (var u in users) {
         Console.WriteLine($"{u.Id}.{u.Login} - {u.Password}");
+        people.Add(new Person(u.Login, u.Password));
     }
 }
 
 
 // условная бд с пользователями
-var people = new List<Person>
- {
-    new Person("tom@gmail.com", "1"),
-    new Person("bob@gmail.com", "55555"),
-    new Person("sam@gmail.com", "22222")
-};
+
 
 var builder = WebApplication.CreateBuilder(args);
 
