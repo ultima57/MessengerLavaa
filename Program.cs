@@ -13,7 +13,7 @@ using System.Text;
 
 
 using (ApplicationContext db = new ApplicationContext()) {
-    Console.WriteLine("ss");
+
     //var user1 = new UserDb { Login = "Tom", Password = "1" };
     //var user2 = new UserDb { Login = "Alice", Password = "1" };
     //var user3 = new UserDb { Login = "Rob", Password = "1" };
