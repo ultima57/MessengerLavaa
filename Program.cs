@@ -18,7 +18,6 @@ using (ApplicationContext db = new ApplicationContext()) {
     //var user2 = new UserDb { Login = "Alice", Password = "1" };
     //var user3 = new UserDb { Login = "Rayan", Password = "gosl" };
 
-    // добавляем их в бд
     //db.Users.AddRange(user1, user2, user3);
 
     //Console.WriteLine("ss2");
@@ -26,26 +25,20 @@ using (ApplicationContext db = new ApplicationContext()) {
 }
 var people = new List<Person>
  {
-
-
     new Person("tom@gmail.com", "1"),
     new Person("bob@gmail.com", "55555"),
     new Person("sam@gmail.com", "22222")
 };
-// получение данных
+
 using (ApplicationContext db = new ApplicationContext()) {
-    // получаем объекты из бд и выводим на консоль
+
     var users = db.Users.ToList();
-    Console.WriteLine("Users list:");
+    //Console.WriteLine("Users list:");
     foreach (var u in users) {
-        Console.WriteLine($"{u.Id}.{u.Login} - {u.Password}");
+        // Console.WriteLine($"{u.Id}.{u.Login} - {u.Password}");
         people.Add(new Person(u.Login, u.Password));
     }
 }
-
-
-// условная бд с пользователями
-
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -68,10 +61,8 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             OnMessageReceived = context => {
                 var accessToken = context.Request.Query["access_token"];
 
-                // если запрос направлен хабу
                 var path = context.HttpContext.Request.Path;
                 if (!string.IsNullOrEmpty(accessToken) && path.StartsWithSegments("/chat")) {
-                    // получаем токен из строки запроса
                     context.Token = accessToken;
                 }
                 return Task.CompletedTask;
@@ -83,13 +74,11 @@ builder.Services.AddSignalR();
 
 var app = builder.Build();
 
-
 app.UseDefaultFiles();
 app.UseStaticFiles();
 
-app.UseAuthentication();   // добавление middleware аутентификации 
-app.UseAuthorization();   // добавление middleware авторизации 
-
+app.UseAuthentication();
+app.UseAuthorization();
 
 app.MapPost("/login", (Person loginModel) => {
     // находим пользователя 
