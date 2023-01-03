@@ -8,6 +8,13 @@
 
     <div class="t396__elem tn-elem tn-elem__5118079681667494376034" data-elem-id="1667494376034" data-elem-type="image" data-field-top-value="0" data-field-left-value="200" data-field-width-value="132" data-field-axisy-value="center" data-field-axisx-value="left" data-field-container-value="grid" data-field-topunits-value="px" data-field-leftunits-value="px" data-field-heightunits-value="" data-field-widthunits-value="px" data-field-filewidth-value="132" data-field-fileheight-value="36" data-field-top-res-320-value="20" data-field-left-res-320-value="22" data-field-width-res-320-value="164" data-field-container-res-320-value="window" data-field-top-res-480-value="31" data-field-left-res-480-value="11" data-field-top-res-640-value="25" data-field-left-res-640-value="11" data-field-axisy-res-640-value="top" data-field-top-res-960-value="0" data-field-left-res-960-value="12" data-fields="img,width,filewidth,fileheight,top,left,container,axisx,axisy,widthunits,leftunits,topunits" style="left: 70.5px; top: 42px; width: 132px;"><a class="tn-atom" href="/"><img class="tn-atom__img t-img loaded" data-original="https://static.tildacdn.com/tild6665-3066-4563-b130-333361613061/Logo.svg" imgfield="tn_img_1667494376034" src="https://static.tildacdn.com/tild6665-3066-4563-b130-333361613061/Logo.svg"></a></div>
 
+    <div id="registrationBlock">
+        Для регистрации введите  логин и пароль:<br />
+        <input id="emailReg" type="text" />
+        <input id="passwordReg" type="password" />
+        <input id="loginBtnReg" type="button" value="Создать аккаунт" style="background-color:orange" />
+    </div><br />
+
     <div id="loginBlock">
         Введите логин и пароль:<br />
         <input id="email" type="text" />
@@ -29,6 +36,35 @@
             .withUrl("/chat", { accessTokenFactory: () => token })
             .configureLogging(signalR.LogLevel.Information)
             .build();
+        //registration
+        document.getElementById("loginBtnReg").addEventListener("click", async () => {
+
+            const response = await fetch("/reg", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    email: document.getElementById("emailReg").value,
+                    password: document.getElementById("passwordReg").value
+                })
+            });
+
+            // если запрос прошел нормально
+            if (response.ok === true) {
+                // получаем данные
+                const data = await response.json();
+                token = data.access_token;
+                username = data.username;
+                document.getElementById("loginBtnReg").disabled = true;
+                console.log(`Status: ${emailReg}`);
+                hubConnection.start()       // начинаем соединение с хабом
+                   // .then(() => document.getElementById("sendBtn").disabled = false)
+                    .catch(err => console.error(err.toString()));
+            }
+            else {
+                // если произошла ошибка, получаем код статуса
+                console.log(`Status: ${response.status}`);
+            }
+        });
 
         // аутентификация
         document.getElementById("loginBtn").addEventListener("click", async () => {

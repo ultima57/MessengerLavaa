@@ -79,6 +79,30 @@ app.UseStaticFiles();
 
 app.UseAuthentication();
 app.UseAuthorization();
+//registration
+app.MapPost("/reg", (Person loginModel) => {
+    Console.WriteLine(loginModel.ToString());
+
+    Person? person = people.FirstOrDefault(p => p.Email == loginModel.Email);
+
+    if (person is not null) {
+
+        Console.WriteLine("this login already in base");
+        return Results.Conflict();
+    }
+    using (ApplicationContext db = new ApplicationContext()) {
+
+        var newUser = new UserDb { Login = loginModel.Email, Password = loginModel.Password };
+        db.Users.Add(newUser);
+        db.SaveChanges();
+        people.Add(new Person(newUser.Login, newUser.Password));
+    }
+
+    Console.WriteLine("Created new account");
+
+    return Results.Accepted();
+
+});
 
 app.MapPost("/login", (Person loginModel) => {
     // находим пользователя 
