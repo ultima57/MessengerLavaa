@@ -7,4 +7,6 @@
 
 
     }
+
+    record class Person(string Email, string Password);
 }
