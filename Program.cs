@@ -6,12 +6,6 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 
-
-
-
-
-
-
 using (ApplicationContext db = new ApplicationContext()) {
 
     //var user1 = new UserDb { Login = "Tom", Password = "1" };
@@ -43,7 +37,7 @@ using (ApplicationContext db = new ApplicationContext()) {
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddSingleton<IUserIdProvider, CustomUserIdProvider>(); // Устанавливаем сервис для получения Id пользователя
-
+builder.Services.AddDbContext<ApplicationContext>();
 builder.Services.AddAuthorization();
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options => {
@@ -71,6 +65,13 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     });
 
 builder.Services.AddSignalR();
+// внедрение зависимости UserService
+builder.Services.AddTransient<UserService>();
+// добавление кэширования
+builder.Services.AddStackExchangeRedisCache(options => {
+    options.Configuration = "localhost";
+    options.InstanceName = "local";
+});
 
 var app = builder.Build();
 
@@ -79,11 +80,22 @@ app.UseStaticFiles();
 
 app.UseAuthentication();
 app.UseAuthorization();
+app.MapGet("/user/{id}", async (int id, UserService userService) => {
+    UserDb? user = await userService.GetUser(id);
+    if (user != null) return $"User {user.Login}  Id={user.Id}  Password={user.Password}";
+    return "User not found";
+});
+
 //registration
 app.MapPost("/reg", (Person loginModel) => {
     Console.WriteLine(loginModel.ToString());
 
     Person? person = people.FirstOrDefault(p => p.Email == loginModel.Email);
+    using (ApplicationContext db = new ApplicationContext()) {
+
+        var userSearched = db.Users.ToList().FirstOrDefault(p => p.Login == loginModel.Email);
+
+    }
 
     if (person is not null) {
 
