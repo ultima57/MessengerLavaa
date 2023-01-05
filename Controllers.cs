@@ -26,9 +26,7 @@ namespace MessengerSignalR {
                 if (person is not null) {
 
                     Console.WriteLine("This login already in base");
-                    ChatHub chatHub = new ChatHub();
 
-                    //    chatHub.SendErrorToUser("this login already in base");
                     return Results.Conflict();
                 }
                 using (ApplicationContext db = new ApplicationContext()) {

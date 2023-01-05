@@ -1,172 +1,263 @@
 ﻿<!DOCTYPE html>
-<html>
+<html style="font-size: 16px;" lang="en">
 <head>
-    <meta charset="utf-8" />
-    <title>Lavaa_Messenger.com</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <meta name="keywords" content="​For &nbsp;register enter your username and password:, Input your login ​and password, ​Enter message and recipient:">
+    <meta name="description" content="">
+    <title>Lavaa messenger</title>
+    <link rel="stylesheet" href="nicepage.css" media="screen">
+    <link rel="stylesheet" href="Home.css" media="screen">
+    <script class="u-script" type="text/javascript" src="jquery.js" defer=""></script>
+    <script class="u-script" type="text/javascript" src="nicepage.js" defer=""></script>
+    <meta name="generator" content="Nicepage 5.2.4, nicepage.com">
+    <meta name="referrer" content="origin">
+    <link id="u-theme-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i">
+
+
+
+    <script type="application/ld+json">        {
+                "@context": "http://schema.org",
+                "@type": "Organization",
+                "name": "",
+                "logo": "images/Logo.svg"
+        }</script>
+    <meta name="theme-color" content="#478ac9">
+    <meta property="og:title" content="Home">
+    <meta property="og:type" content="website">
+    <style>
+        .parallax {
+            /* The image used */
+            background-image: url("https://krot.info/uploads/posts/2021-01/1610213139_1-p-gradientnii-yarkii-fon-10.jpg");
+            /* Set a specific height */
+            min-height: 500px;
+            /* Create the parallax scrolling effect */
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        .button {
+            background-color: black; /* Green */
+            border: none;
+            color: red;
+            padding: 11px 47px;
+            text-align: center;
+            text-decoration: bold;
+            display: block;
+            font-size: 20px;
+            margin: 2px 2px;
+            cursor: pointer;
+            border-radius: 32px
+        }
+
+        .b2 {
+            padding: 11px 83px;
+        }
+    </style>
 </head>
 <body style="background-image: url('https://krot.info/uploads/posts/2021-01/1610213139_1-p-gradientnii-yarkii-fon-10.jpg')">
 
     <div class="t396__elem tn-elem tn-elem__5118079681667494376034" data-elem-id="1667494376034" data-elem-type="image" data-field-top-value="0" data-field-left-value="200" data-field-width-value="132" data-field-axisy-value="center" data-field-axisx-value="left" data-field-container-value="grid" data-field-topunits-value="px" data-field-leftunits-value="px" data-field-heightunits-value="" data-field-widthunits-value="px" data-field-filewidth-value="132" data-field-fileheight-value="36" data-field-top-res-320-value="20" data-field-left-res-320-value="22" data-field-width-res-320-value="164" data-field-container-res-320-value="window" data-field-top-res-480-value="31" data-field-left-res-480-value="11" data-field-top-res-640-value="25" data-field-left-res-640-value="11" data-field-axisy-res-640-value="top" data-field-top-res-960-value="0" data-field-left-res-960-value="12" data-fields="img,width,filewidth,fileheight,top,left,container,axisx,axisy,widthunits,leftunits,topunits" style="left: 70.5px; top: 42px; width: 132px;"><a class="tn-atom" href="/"><img class="tn-atom__img t-img loaded" data-original="https://static.tildacdn.com/tild6665-3066-4563-b130-333361613061/Logo.svg" imgfield="tn_img_1667494376034" src="https://static.tildacdn.com/tild6665-3066-4563-b130-333361613061/Logo.svg"></a></div>
 
     <div id="registrationBlock">
-        Для регистрации введите  логин и пароль:<br />
-        <input id="emailReg" type="text" />
-        <input id="passwordReg" type="password" />
-        <input id="loginBtnReg" type="button" value="Создать аккаунт" style="background-color:orange" />
-    </div><br />
+        <section class="skrollable u-align-center u-clearfix u-image u-parallax u-section-1" id="pick" data-image-width="2000" data-image-height="1333">
+            <h2 class="u-text u-text-1"> For register enter your username and password:</h2>
+            <div class="u-expanded-width u-form u-form-1">
+                <form action="https://forms.nicepagesrv.com/Form/Process" class="u-clearfix u-form-horizontal u-form-spacing-19 u-inner-form" style="padding: 18px;">
+                    <div class="u-form-group u-form-name u-label-none">
+                        <label for="name-ef64" class="u-label">Name</label>
+                        <input type="text" id="emailReg" class="u-border-1 u-border-grey-30 u-input u-input-rectangle" required="">
+                    </div>
+                    <div class="u-form-email u-form-group u-label-none">
+                        <label for="email-ef64" class="u-label">Email</label>
+                        <input type="password" id="passwordReg" class="u-border-1 u-border-grey-30 u-input u-input-rectangle" required="">
+                    </div>
+                    <div class="u-form-group u-form-submit">
+                        <button input id="loginBtnReg" type="button" class="button">Create account</button>
+                    </div>
 
-    <div id="loginBlock">
-        Введите логин и пароль:<br />
-        <input id="email" type="text" />
-        <input id="password" type="password" />
-        <input id="loginBtn" type="button" value="Войти" style="background-color:orange" />
-    </div><br />
 
-    <div id="inputForm">
-        Введите сообщение и получателя:<br />
-        <input type="text" id="message" placeholder="Введите сообщение" />
-        <input type="text" id="receiver" placeholder="Введите получателя" />
-        <input type="button" id="sendBtn" disabled value="Отправить" style="border:2px solid Violet" />
-    </div>
-    <div id="erorbar"></div>
-    <div id="chatroom"></div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/6.0.1/signalr.js"></script>
-    <script>
-        var errorMessages = new Map();
-        var error409 = 409;
-        var error401 = 401;
-        var Ok = 202;
-        errorMessages.set(error409, "This login already in base");
-        errorMessages.set(error401, "Wrong password or login");
-        errorMessages.set(Ok, "New account created");
-        function createErrorMessage(status) {
-            const userNameElem = document.createElement("b");
-            userNameElem.textContent = "Server: " + ` Status: ${status}: ` + errorMessages.get(status);
+                </form>
+            </div>
+            <h2 class="u-text u-text-2">Input your login ​and password</h2>
+            <div class="u-expanded-width u-form u-form-2">
+                <form action="https://forms.nicepagesrv.com/Form/Process" class="u-clearfix u-form-horizontal u-form-spacing-19 u-inner-form" style="padding: 18px;">
+                    <div class="u-form-group u-form-name u-label-none">
 
-            // создает элемент <p> для сообщения пользователя
-            const elem = document.createElement("p");
-            elem.appendChild(userNameElem);
+                        <input type="text" id="email" class="u-border-1 u-border-grey-30 u-input u-input-rectangle" required="">
+                    </div>
+                    <div class="u-form-email u-form-group u-label-none">
+                        <label for="email-ef64" class="u-label">Email</label>
+                        <input type="Password" id="password" class="u-border-1 u-border-grey-30 u-input u-input-rectangle" required="">
+                    </div>
+                    <div class="u-form-group u-form-submit">
 
-            const firstElem = document.getElementById("chatroom").firstChild;
-            document.getElementById("chatroom").insertBefore(elem, firstElem)
-        }
+                        <button input id="loginBtn" type="button" class="button b2">Sign in</button>
+                    </div>
 
-        let token;      // токен
-        const hubConnection = new signalR.HubConnectionBuilder()
-            .withUrl("/chat", { accessTokenFactory: () => token })
-            .configureLogging(signalR.LogLevel.Information)
-            .build();
-        hubConnection.start()
-            .catch(err => console.error(err.toString()));
-        //registration
-        document.getElementById("loginBtnReg").addEventListener("click", async () => {
-          
-            const response = await fetch("/reg", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({
-                    email: document.getElementById("emailReg").value,
-                    password: document.getElementById("passwordReg").value
-                })
 
+                </form>
+            </div>
+            <h2 class="u-text u-text-3"> Enter message and recipient:</h2>
+            <div class="u-expanded-width u-form u-form-3">
+                <form action="https://forms.nicepagesrv.com/Form/Process" class="u-clearfix u-form-horizontal u-form-spacing-19 u-inner-form" style="padding: 18px;">
+                    <div class="u-form-group u-form-name u-label-none">
+                        <label for="name-ef64" class="u-label">Name</label>
+                        <input type="text" placeholder="Message" id="message" class="u-border-1 u-border-grey-30 u-input u-input-rectangle" required="">
+                    </div>
+                    <div class="u-form-email u-form-group u-label-none">
+                        <label for="email-ef64" class="u-label">Email</label>
+                        <input type="text" placeholder="Recipient" id="receiver" class="u-border-1 u-border-grey-30 u-input u-input-rectangle" required="">
+                    </div>
+                    <div class="u-form-group u-form-submit">
+                        <button input id="sendBtn" type="button" class="button">Send message</button>
+                    </div>
+
+
+                </form>
+            </div>
+        </section>
+
+       
+        <div id="chatroom"></div>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/6.0.1/signalr.js"></script>
+        <script>
+            var errorMessages = new Map();
+            var error409 = 409;
+            var error401 = 401;
+            var Ok = 202;
+            errorMessages.set(error409, "This login already in base");
+            errorMessages.set(error401, "Wrong password or login");
+            errorMessages.set(Ok, "New account created");
+            function createErrorMessage(status) {
+                const userNameElem = document.createElement("b");
+                userNameElem.textContent = "Server: " + ` Status: ${status}: ` + errorMessages.get(status);
+
+                // создает элемент <p> для сообщения пользователя
+                const elem = document.createElement("p");
+                elem.appendChild(userNameElem);
+
+                const firstElem = document.getElementById("chatroom").firstChild;
+                document.getElementById("chatroom").insertBefore(elem, firstElem)
+            }
+
+            let token;      // токен
+            const hubConnection = new signalR.HubConnectionBuilder()
+                .withUrl("/chat", { accessTokenFactory: () => token })
+                .configureLogging(signalR.LogLevel.Information)
+                .build();
+            hubConnection.start()
+                .catch(err => console.error(err.toString()));
+            //registration
+            document.getElementById("loginBtnReg").addEventListener("click", async () => {
+
+                const response = await fetch("/reg", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({
+                        email: document.getElementById("emailReg").value,
+                        password: document.getElementById("passwordReg").value
+                    })
+
+                });
+
+                // если запрос прошел нормально
+                if (response.ok === true) {
+
+                    document.getElementById("loginBtnReg").disabled = true;
+                    console.log(`Status: ${emailReg}`);
+                    createErrorMessage(response.status);
+
+                }
+
+                else {
+
+
+                    createErrorMessage(response.status);
+
+                }
             });
 
-            // если запрос прошел нормально
-            if (response.ok === true) {
+            // аутентификация
+            document.getElementById("loginBtn").addEventListener("click", async () => {
 
-                document.getElementById("loginBtnReg").disabled = true;
-                console.log(`Status: ${emailReg}`);
-                createErrorMessage(response.status);
-            
-            }
-    
-            else {
-                
-             
-                createErrorMessage(response.status);
-                
-            }
-        });
+                const response = await fetch("/login", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({
+                        email: document.getElementById("email").value,
+                        password: document.getElementById("password").value
+                    })
+                });
 
-        // аутентификация
-        document.getElementById("loginBtn").addEventListener("click", async () => {
+                // если запрос прошел нормально
+                if (response.ok === true) {
+                    // получаем данные
+                    const data = await response.json();
+                    token = data.access_token;
+                    username = data.username;
+                    document.getElementById("loginBtn").disabled = true;
+                    document.getElementById("loginBtnReg").disabled = true;
 
-            const response = await fetch("/login", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({
-                    email: document.getElementById("email").value,
-                    password: document.getElementById("password").value
-                })
+                    hubConnection.start()       // начинаем соединение с хабом
+                        .then(() => document.getElementById("sendBtn").disabled = false)
+                        .catch(err => console.error(err.toString()));
+                }
+                else {
+                    createErrorMessage(response.status);
+
+                }
             });
 
-            // если запрос прошел нормально
-            if (response.ok === true) {
-                // получаем данные
-                const data = await response.json();
-                token = data.access_token;
-                username = data.username;
-                document.getElementById("loginBtn").disabled = true;
-                document.getElementById("loginBtnReg").disabled = true;
+            // отправка сообщения от простого пользователя
+            document.getElementById("sendBtn").addEventListener("click", () => {
 
-                hubConnection.start()       // начинаем соединение с хабом
-                    .then(() => document.getElementById("sendBtn").disabled = false)
-                    .catch(err => console.error(err.toString()));
-            }
-            else {
-                createErrorMessage(response.status);
-                
-            }
-        });
+                const message = document.getElementById("message").value;
+                const receiver = document.getElementById("receiver").value;
+                hubConnection.invoke("Send", message, receiver)
+                    .catch(error => console.error(error));
+            });
 
-        // отправка сообщения от простого пользователя
-        document.getElementById("sendBtn").addEventListener("click", () => {
+            // получение сообщения от пользователя
+            hubConnection.on("Receive", (message, user) => {
 
-            const message = document.getElementById("message").value;
-            const receiver = document.getElementById("receiver").value;
-            hubConnection.invoke("Send", message, receiver)
-                .catch(error => console.error(error));
-        });
+                // создаем элемент <b> для имени пользователя
+                const userNameElem = document.createElement("b");
+                userNameElem.textContent = `${user}: `;
 
-        // получение сообщения от пользователя
-        hubConnection.on("Receive", (message, user) => {
+                // создает элемент <p> для сообщения пользователя
+                const elem = document.createElement("p");
+                elem.appendChild(userNameElem);
+                elem.appendChild(document.createTextNode(message));
 
-            // создаем элемент <b> для имени пользователя
-            const userNameElem = document.createElement("b");
-            userNameElem.textContent = `${user}: `;
+                const firstElem = document.getElementById("chatroom").firstChild;
+                document.getElementById("chatroom").insertBefore(elem, firstElem);
+            });
 
-            // создает элемент <p> для сообщения пользователя
-            const elem = document.createElement("p");
-            elem.appendChild(userNameElem);
-            elem.appendChild(document.createTextNode(message));
+            // получени общего уведомления
+            hubConnection.on("Notify", message => {
 
-            const firstElem = document.getElementById("chatroom").firstChild;
-            document.getElementById("chatroom").insertBefore(elem, firstElem);
-        });
+                const elem = document.createElement("p");
+                elem.textContent = message;
 
-        // получени общего уведомления
-        hubConnection.on("Notify", message => {
+                const firstElem = document.getElementById("chatroom").firstChild;
+                document.getElementById("chatroom").insertBefore(elem, firstElem);
+            });
+            // получени error
+            hubConnection.on("ReceiveError", message => {
 
-            const elem = document.createElement("p");
-            elem.textContent = message;
+                const userNameElem = document.createElement("b");
+                userNameElem.textContent = "Server: ";
 
-            const firstElem = document.getElementById("chatroom").firstChild;
-            document.getElementById("chatroom").insertBefore(elem, firstElem);
-        });
-        // получени error
-        hubConnection.on("ReceiveError", message => {
+                // создает элемент <p> для сообщения пользователя
+                const elem = document.createElement("p");
+                elem.appendChild(userNameElem);
+                elem.appendChild(document.createTextNode(message));
 
-            const userNameElem = document.createElement("b");
-            userNameElem.textContent = "Server: ";
-
-            // создает элемент <p> для сообщения пользователя
-            const elem = document.createElement("p");
-            elem.appendChild(userNameElem);
-            elem.appendChild(document.createTextNode(message));
-
-            const firstElem = document.getElementById("chatroom").firstChild;
-            document.getElementById("chatroom").insertBefore(elem, firstElem);
-        });
-    </script>
+                const firstElem = document.getElementById("chatroom").firstChild;
+                document.getElementById("chatroom").insertBefore(elem, firstElem);
+            });
+        </script>
 </body>
 </html>

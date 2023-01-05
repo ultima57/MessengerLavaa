@@ -5,8 +5,6 @@ VisualStudioVersion = 17.4.33205.214
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MessengerSignalR", "MessengerSignalR.csproj", "{C353A732-2B26-4185-B430-CBEBE0C3F7C9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebServerApplication", "..\WebServerApplication\WebServerApplication.csproj", "{BFB9EDFB-EE4C-4E4C-BD54-2A4AAD97A424}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -17,10 +15,6 @@ Global
 		{C353A732-2B26-4185-B430-CBEBE0C3F7C9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C353A732-2B26-4185-B430-CBEBE0C3F7C9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C353A732-2B26-4185-B430-CBEBE0C3F7C9}.Release|Any CPU.Build.0 = Release|Any CPU
-		{BFB9EDFB-EE4C-4E4C-BD54-2A4AAD97A424}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{BFB9EDFB-EE4C-4E4C-BD54-2A4AAD97A424}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{BFB9EDFB-EE4C-4E4C-BD54-2A4AAD97A424}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{BFB9EDFB-EE4C-4E4C-BD54-2A4AAD97A424}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
