@@ -13,7 +13,7 @@ namespace MessengerSignalR {
             });
         }
         internal static void AppMapPostRegistation(List<Person> people, WebApplication app) {
-            app.MapPost("/reg", (Person loginModel) => {
+            app.MapPost("/reg", async (Person loginModel) => {
                 Console.WriteLine(loginModel.ToString());
 
                 Person? person = people.FirstOrDefault(p => p.Email == loginModel.Email);
@@ -25,7 +25,10 @@ namespace MessengerSignalR {
 
                 if (person is not null) {
 
-                    Console.WriteLine("this login already in base");
+                    Console.WriteLine("This login already in base");
+                    ChatHub chatHub = new ChatHub();
+
+                    //    chatHub.SendErrorToUser("this login already in base");
                     return Results.Conflict();
                 }
                 using (ApplicationContext db = new ApplicationContext()) {
@@ -34,6 +37,7 @@ namespace MessengerSignalR {
                     db.Users.Add(newUser);
                     db.SaveChanges();
                     people.Add(new Person(newUser.Login, newUser.Password));
+
                 }
 
                 Console.WriteLine("Created new account");

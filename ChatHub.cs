@@ -27,6 +27,18 @@ namespace MessengerSignalR {
                 db.SaveChanges();
             }
         }
+        public async Task SendErrorToUser(string errorType) {
+            //string message = "error";
+            //if (errorType == "tryed registr") {
+
+            //}
+            //if (errorType == "user already exsist") { }
+            Console.WriteLine("async");
+
+            await Clients.Caller.SendAsync("ReceiveError", errorType);
+            await Clients.All.SendAsync("ReceiveError", errorType);
+
+        }
 
         public override async Task OnConnectedAsync() {
             await Clients.All.SendAsync("Notify", $"Приветствуем {Context.UserIdentifier}");

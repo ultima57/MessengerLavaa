@@ -28,17 +28,39 @@
         <input type="text" id="receiver" placeholder="Введите получателя" />
         <input type="button" id="sendBtn" disabled value="Отправить" style="border:2px solid Violet" />
     </div>
+    <div id="erorbar"></div>
     <div id="chatroom"></div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/6.0.1/signalr.js"></script>
     <script>
+        var errorMessages = new Map();
+        var error409 = 409;
+        var error401 = 401;
+        var Ok = 202;
+        errorMessages.set(error409, "This login already in base");
+        errorMessages.set(error401, "Wrong password or login");
+        errorMessages.set(Ok, "New account created");
+        function createErrorMessage(status) {
+            const userNameElem = document.createElement("b");
+            userNameElem.textContent = "Server: " + ` Status: ${status}: ` + errorMessages.get(status);
+
+            // создает элемент <p> для сообщения пользователя
+            const elem = document.createElement("p");
+            elem.appendChild(userNameElem);
+
+            const firstElem = document.getElementById("chatroom").firstChild;
+            document.getElementById("chatroom").insertBefore(elem, firstElem)
+        }
+
         let token;      // токен
         const hubConnection = new signalR.HubConnectionBuilder()
             .withUrl("/chat", { accessTokenFactory: () => token })
             .configureLogging(signalR.LogLevel.Information)
             .build();
+        hubConnection.start()
+            .catch(err => console.error(err.toString()));
         //registration
         document.getElementById("loginBtnReg").addEventListener("click", async () => {
-
+          
             const response = await fetch("/reg", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
@@ -46,23 +68,23 @@
                     email: document.getElementById("emailReg").value,
                     password: document.getElementById("passwordReg").value
                 })
+
             });
 
             // если запрос прошел нормально
             if (response.ok === true) {
-                // получаем данные
-                const data = await response.json();
-                token = data.access_token;
-                username = data.username;
+
                 document.getElementById("loginBtnReg").disabled = true;
                 console.log(`Status: ${emailReg}`);
-                hubConnection.start()       // начинаем соединение с хабом
-                   // .then(() => document.getElementById("sendBtn").disabled = false)
-                    .catch(err => console.error(err.toString()));
+                createErrorMessage(response.status);
+            
             }
+    
             else {
-                // если произошла ошибка, получаем код статуса
-                console.log(`Status: ${response.status}`);
+                
+             
+                createErrorMessage(response.status);
+                
             }
         });
 
@@ -85,14 +107,15 @@
                 token = data.access_token;
                 username = data.username;
                 document.getElementById("loginBtn").disabled = true;
+                document.getElementById("loginBtnReg").disabled = true;
 
                 hubConnection.start()       // начинаем соединение с хабом
                     .then(() => document.getElementById("sendBtn").disabled = false)
                     .catch(err => console.error(err.toString()));
             }
             else {
-                // если произошла ошибка, получаем код статуса
-                console.log(`Status: ${response.status}`);
+                createErrorMessage(response.status);
+                
             }
         });
 
@@ -126,6 +149,20 @@
 
             const elem = document.createElement("p");
             elem.textContent = message;
+
+            const firstElem = document.getElementById("chatroom").firstChild;
+            document.getElementById("chatroom").insertBefore(elem, firstElem);
+        });
+        // получени error
+        hubConnection.on("ReceiveError", message => {
+
+            const userNameElem = document.createElement("b");
+            userNameElem.textContent = "Server: ";
+
+            // создает элемент <p> для сообщения пользователя
+            const elem = document.createElement("p");
+            elem.appendChild(userNameElem);
+            elem.appendChild(document.createTextNode(message));
 
             const firstElem = document.getElementById("chatroom").firstChild;
             document.getElementById("chatroom").insertBefore(elem, firstElem);
