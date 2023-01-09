@@ -15,7 +15,12 @@ namespace MessengerSignalR {
         internal static void AppMapPostRegistation(List<Person> people, WebApplication app) {
             app.MapPost("/reg", async (Person loginModel) => {
                 Console.WriteLine(loginModel.ToString());
+                if ((loginModel.Email is null) || (loginModel.Email.Equals(""))) {
 
+                    Console.WriteLine("Empty field");
+
+                    return Results.NoContent();
+                }
                 Person? person = people.FirstOrDefault(p => p.Email == loginModel.Email);
                 using (ApplicationContext db = new ApplicationContext()) {
 

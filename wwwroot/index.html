@@ -108,10 +108,11 @@
                     </div>
                     <div class="u-form-email u-form-group u-label-none">
                         <label for="email-ef64" class="u-label">Email</label>
-                        <input type="text" placeholder="Recipient" id="receiver" class="u-border-1 u-border-grey-30 u-input u-input-rectangle" required="">
+                        <input type="text" placeholder="All" id="receiver" class="u-border-1 u-border-grey-30 u-input u-input-rectangle" required="">
                     </div>
                     <div class="u-form-group u-form-submit">
                         <button input id="sendBtn" type="button" class="button">Send message</button>
+                      
                     </div>
 
 
@@ -127,9 +128,13 @@
             var error409 = 409;
             var error401 = 401;
             var Ok = 202;
+            var error204 = 204;
+            
             errorMessages.set(error409, "This login already in base");
             errorMessages.set(error401, "Wrong password or login");
             errorMessages.set(Ok, "New account created");
+            errorMessages.set(error204, "Empty field");
+           
             function createErrorMessage(status) {
                 const userNameElem = document.createElement("b");
                 userNameElem.textContent = "Server: " + ` Status: ${status}: ` + errorMessages.get(status);
@@ -141,7 +146,7 @@
                 const firstElem = document.getElementById("chatroom").firstChild;
                 document.getElementById("chatroom").insertBefore(elem, firstElem)
             }
-
+            
             let token;      // токен
             const hubConnection = new signalR.HubConnectionBuilder()
                 .withUrl("/chat", { accessTokenFactory: () => token })

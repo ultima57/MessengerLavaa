@@ -1,6 +1,7 @@
 ﻿using MessengerSignalR;
 using Microsoft.AspNetCore.SignalR;
 
+
 var people = new List<Person>
  {
     new Person("tom@gmail.com", "1"),
@@ -23,6 +24,12 @@ builder.Services.AddSingleton<IUserIdProvider, CustomUserIdProvider>(); // Ус�
 builder.Services.AddDbContext<ApplicationContext>();
 builder.Services.AddAuthorization();
 
+builder.Services.AddCors(o => o.AddPolicy("TestCors", builder => {
+    builder.AllowAnyOrigin()
+           .AllowAnyMethod()
+           .AllowAnyHeader();
+}));
+
 Controllers.BuilderServicesAddAuthentication(builder);
 
 builder.Services.AddSignalR();
@@ -34,11 +41,15 @@ builder.Services.AddStackExchangeRedisCache(options => {
     options.InstanceName = "local";
 });
 
+
+
 var app = builder.Build();
+app.UseCors("TestCors");
 app.UseDefaultFiles();
 app.UseStaticFiles();
 app.UseAuthentication();
 app.UseAuthorization();
+app.UseWebSockets();//new
 
 Controllers.AppMapGet(app);
 
@@ -47,5 +58,11 @@ Controllers.AppMapPostRegistation(people, app);
 Controllers.AppMapPostLogin(people, app);
 
 app.MapHub<ChatHub>("/chat");
+app.MapPost("/data", async (HttpContext httpContext) => {
+    using StreamReader reader = new StreamReader(httpContext.Request.Body);
+    string name = await reader.ReadToEndAsync();
+    return $"Получены данные: {name}";
+});
+//app.Run("http://localhost:44386");
 app.Run();
 
